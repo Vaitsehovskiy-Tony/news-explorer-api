@@ -29,8 +29,6 @@ const path = require('path');
 // конфиг переменных окружения и порт
 const config = require('./config');
 
-const { PORT = 3000 } = process.env;
-
 const limiter = rateLimit({
   // за 15 минут
   windowMs: 15 * 60 * 1000,
@@ -74,4 +72,4 @@ app.use(router);
 // используем наш обработчик ошибок
 app.use(errorsHandler);
 
-app.listen(PORT);
+app.listen(config.PORT);
