@@ -71,6 +71,8 @@ app.use(router);
 // используем наш обработчик ошибок
 app.use(errorsHandler);
 
-app.listen(config.PORT, () => {
+const server = app.listen(config.PORT, () => {
   console.log(`App listening on port ${config.PORT}`);
 });
+
+module.exports = server;
