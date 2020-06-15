@@ -22,11 +22,14 @@ const rateLimit = require('express-rate-limit');
 // подключаем мангуз
 const mongoose = require('mongoose');
 
-// обработка и преобразование путей к файлам
+// совместимость путей между платформами.
+// на вин, линукс и мак пути записываются по-разному
 const path = require('path');
 
 // конфиг переменных окружения и порт
 const config = require('./config');
+
+const { PORT = 3000 } = process.env;
 
 const limiter = rateLimit({
   // за 15 минут
@@ -71,8 +74,4 @@ app.use(router);
 // используем наш обработчик ошибок
 app.use(errorsHandler);
 
-const server = app.listen(config.PORT, () => {
-  console.log(`App listening on port ${config.PORT}`);
-});
-
-module.exports = server;
+app.listen(PORT);
