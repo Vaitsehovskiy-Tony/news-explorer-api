@@ -9,8 +9,7 @@ const { signInSchema } = require('../schemas/signInSchema');
 const { signUpSchema } = require('../schemas/signUpSchema');
 
 // миддлвары
-const auth = require('../middlewares/auth');
-const errorshandler = require('../middlewares/errorsHandler');
+const errorsHandler = require('../middlewares/errorsHandler');
 
 // библиотека для логгирования winston
 const { requestLogger, errorLogger } = require('../middlewares/logger');
@@ -18,6 +17,9 @@ const { requestLogger, errorLogger } = require('../middlewares/logger');
 // контроллеры
 const { signIn } = require('../controllers/signin');
 const { signUp } = require('../controllers/signup');
+
+// миддлвар авторизации
+const auth = require('../middlewares/auth');
 
 // роутеры
 const users = require('./users');
@@ -37,14 +39,14 @@ router.use(auth);
 router.use('/users', users);
 router.use('/articles', articles);
 
+// наша обработка ошибок
+router.use(errorsHandler);
+
 // логгер ошибок
 router.use(errorLogger);
 
 // обработчик ошибок celebrate
 router.use(errors());
-
-// наша обработка ошибок
-router.use(errorshandler);
 
 // экспортируем роутер
 module.exports = router;

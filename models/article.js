@@ -15,7 +15,7 @@ const articleModel = new mongoose.Schema({
     required: [true, 'Это обязательное поле'],
   },
   date: {
-    type: Date,
+    type: String,
     required: [true, 'Это обязательное поле'],
   },
   source: {

@@ -1,6 +1,6 @@
-const Joi = require('celebrate');
+const { Joi } = require('celebrate');
 
-module.exports.cardPostSchema = {
+module.exports.articlePostSchema = {
   body: Joi.object().keys({
     keyword: Joi.string()
       .alphanum()
@@ -12,7 +12,6 @@ module.exports.cardPostSchema = {
       .alphanum()
       .required(),
     date: Joi.string()
-      .num()
       .required(),
     source: Joi.string()
       .alphanum()

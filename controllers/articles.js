@@ -36,7 +36,7 @@ const articleRemove = (req, res, next) => {
 
 const getArticles = (req, res, next) => {
   articleModel.find({})
-    .then((cards) => res.send({ data: cards }))
+    .then((articles) => res.send({ data: articles }))
     .catch(next);
 };
 
@@ -46,9 +46,9 @@ const createArticle = (req, res, next) => {
   } = req.body;
   const owner = req.user._id;
   articleModel.create({
-    keyword, title, text, date, source, link, image,
+    keyword, title, text, date, source, link, image, owner,
   })
-    .then((oneCard) => res.send(oneCard))
+    .then((article) => res.status(201).send({ data: article }))
     .catch(next);
 };
 

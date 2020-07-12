@@ -9,9 +9,6 @@ const signIn = (req, res, next) => {
   const { email, password } = req.body;
   let user;
 
-  console.log(JWT_SECRET);
-
-
   Users.findOne({ email }).select('+password')
     .then((u) => {
       user = u;

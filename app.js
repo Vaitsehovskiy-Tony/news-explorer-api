@@ -10,7 +10,7 @@ const app = express();
 // парсер данных
 const bodyParser = require('body-parser');
 
-// парсер приходящих кук
+// парсер приходящих куки
 const cookieParser = require('cookie-parser');
 
 // заголовки безопасности проставляем автоматически
