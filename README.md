@@ -6,7 +6,7 @@ ____
 #### http://myownnews.ru.com/
 #### https://myownnews.ru.com/
 
-#### v0.0.1
+#### v0.0.2
 
 #### Стек технологий: MongoDB, JavaScript, Git, Node.js, API REST
 
