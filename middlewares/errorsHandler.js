@@ -14,7 +14,6 @@ module.exports = (err, req, res, next) => {
     message = 'unexpected error';
   }
 
-
   res
     .status(newStatus)
     .json({

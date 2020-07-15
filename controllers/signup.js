@@ -2,7 +2,6 @@ const bcrypt = require('bcryptjs');
 const Users = require('../models/user');
 const ConflictError = require('../errors/conflict-error');
 
-
 const signUp = (req, res, next) => {
   const {
     name, email, password,

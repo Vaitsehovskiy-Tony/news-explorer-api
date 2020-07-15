@@ -7,8 +7,8 @@ const BadRequestError = require('../errors/bad-request-error');
 
 const articleRemove = (req, res, next) => {
   articleModel.findById(req.params.id)
-    .then((card) => {
-      const { owner } = card;
+    .then((article) => {
+      const { owner } = article;
       if (owner === 'null') {
         throw new BadRequestError('Недопустимые символы, используйте латиницу');
       }

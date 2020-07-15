@@ -4,7 +4,6 @@ const UnauthorizedError = require('../errors/unauthorized-error');
 const Users = require('../models/user');
 const { JWT_SECRET } = require('../config');
 
-
 const signIn = (req, res, next) => {
   const { email, password } = req.body;
   let user;

@@ -4,7 +4,6 @@ const { requestLogger, errorLogger } = require('../middlewares/logger');
 
 routerUsers.use(requestLogger);
 
-
 routerUsers.get('/me', getUser);
 routerUsers.get('/:id', findUser);
 

@@ -13,7 +13,6 @@ articles.post('/', celebrate(articlePostSchema), createArticle);
 
 articles.use(errors());
 
-
 articles.use(errorLogger);
 
 module.exports = articles;
