@@ -5,8 +5,11 @@ ____
 #### 84.201.169.56
 #### http://myownnews.ru.com/
 #### https://myownnews.ru.com/
+#### http://myownnews.ru.com/api
+#### https://myownnews.ru.com/api
 
-#### v0.0.2
+
+#### v0.0.3
 
 #### Стек технологий: MongoDB, JavaScript, Git, Node.js, API REST
 
