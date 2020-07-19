@@ -15,8 +15,6 @@ const signUp = (req, res, next) => {
       const userNoPass = user;
       userNoPass.password = '******';
       res.send({ data: userNoPass });
-      // удалить
-      // console.log('работаю...');
     })
     .catch((err) => {
       if (err.code === 11000) {

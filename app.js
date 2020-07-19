@@ -56,13 +56,15 @@ mongoose.connect(config.MONGODB_URL, {
   useCreateIndex: true,
   useFindAndModify: false,
   useUnifiedTopology: true,
-})
-  .then(() => {
-    console.log('Connected to MongoDB');
-  })
-  .catch(() => {
-    console.log('Connection error');
-  });
+});
+
+// отслеживание ошибок в консоли
+// .then(() => {
+//   console.log('Connected to MongoDB');
+// })
+// .catch(() => {
+//   console.log('Connection error');
+// });
 
 // делаем доступными пользователю все публичные файлы
 app.use(express.static(path.join(__dirname, 'public')));

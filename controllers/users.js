@@ -1,12 +1,6 @@
 const NotFoundError = require('../errors/not-found-error');
 const Users = require('../models/user');
 
-// const getUser = (req, res, next) => {
-//   Users.find({})
-//     .then((users) => res.send({ data: users }))
-//     .catch(next);
-// };
-
 const getUser = (req, res, next) => {
   Users.findById(req.user._id)
     .then((user) => {
