@@ -31,7 +31,6 @@ const signIn = (req, res, next) => {
         maxAge: 3600000 * 24 * 7,
         httpOnly: true,
         // защитимся от CSFR
-        sameSite: true,
       });
       res.json({ token });
     })
