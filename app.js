@@ -30,7 +30,7 @@ const corsOptions = {
   // methods: ['GET', 'HEAD', 'PUT', 'PATCH', 'POST', 'DELETE'],
   // preflightContinue: false,
   // optionsSuccessStatus: 204,
-  // allowerHeaders: ['Content-Type', 'Authorization', 'x-requested-with', 'origin', 'accept'],
+  allowerHeaders: ['Access-Control-Allow-Origin', 'Content-Type', 'Authorization', 'x-requested-with', 'origin', 'accept'],
   credentials: true,
 };
 
