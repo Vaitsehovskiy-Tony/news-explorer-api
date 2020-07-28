@@ -59,7 +59,7 @@ const corsOptions = {
   methods: ['GET', 'HEAD', 'PUT', 'PATCH', 'POST', 'DELETE'],
   preflightContinue: false,
   optionsSuccessStatus: 204,
-  allowerHeaders: ['Content-Type', 'Authorization', 'x-requested-with', 'origin', 'accept', 'x-access-token'],
+  allowerHeaders: ['Content-Type', 'Authorization', 'x-requested-with', 'origin', 'accept'],
   credentials: true,
 };
 
@@ -89,7 +89,6 @@ app.use(bodyParser.urlencoded({ extended: true }));
 const router = require('./routes/index');
 // импорт нашего обработчика ошибок
 const errorsHandler = require('./middlewares/errorsHandler');
-const { access } = require('fs');
 
 // подключаемся к серверу mongo
 mongoose.connect(config.MONGODB_URL, {
