@@ -4,6 +4,8 @@ require('dotenv').config();
 // подключаем express
 const express = require('express');
 
+const cors = require('cors');
+
 // создаем express-приложение
 const app = express();
 
@@ -36,6 +38,32 @@ const limiter = rateLimit({
   max: 100,
 });
 
+const whitelist = [
+  'http://localhost:8080',
+  '84.201.169.56',
+  'http://myownnews.ru.com/',
+  'https://myownnews.ru.com/',
+  'http://myownnews.ru.com/api',
+  'https://myownnews.ru.com/api',
+  'http://www.myownnews.ru.com/',
+  'https://www.myownnews.ru.com/',
+  'http://www.myownnews.ru.com/api',
+  'https://www.myownnews.ru.com/api',
+  'https://Vaitsehovskiy-Tony.github.io',
+];
+
+const corsOptions = {
+  origin(origin, callback) {
+    if (whitelist.indexOf(origin) !== -1) {
+      callback(null, true);
+    } else {
+      callback(new Error('Not allowed by CORS'));
+    }
+  },
+  credentials: true, // для передачи заголовка Access-Control-Allow-credentials
+};
+
+app.use(cors(corsOptions));
 app.use(limiter);
 app.use(helmet());
 app.use(cookieParser());
