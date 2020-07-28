@@ -8,7 +8,7 @@ require('dotenv').config();
 // подключаем express
 const express = require('express');
 
-// const cors = require('cors');
+const cors = require('cors');
 
 // создаем express-приложение
 const app = express();
@@ -42,39 +42,39 @@ const limiter = rateLimit({
   max: 100,
 });
 
-// const corsOptions = {
-//   origin: [
-//     'http://localhost:8080',
-//     '84.201.169.56',
-//     'http://myownnews.ru.com/',
-//     'https://myownnews.ru.com/',
-//     'http://myownnews.ru.com/api',
-//     'https://myownnews.ru.com/api',
-//     'http://www.myownnews.ru.com/',
-//     'https://www.myownnews.ru.com/',
-//     'http://www.myownnews.ru.com/api',
-//     'https://www.myownnews.ru.com/api',
-//     'https://Vaitsehovskiy-Tony.github.io',
-//   ],
-//   methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
-//   preflightContinue: false,
-//   optionsSuccessStatus: 204,
-//   allowerHeaders: ['Content-Type', 'Authorization'],
-//   credentials: true,
-// };
+const corsOptions = {
+  origin: [
+    'http://localhost:8080',
+    '84.201.169.56',
+    'http://myownnews.ru.com',
+    'https://myownnews.ru.com',
+    'http://myownnews.ru.com/api',
+    'https://myownnews.ru.com/api',
+    'http://www.myownnews.ru.com',
+    'https://www.myownnews.ru.com',
+    'http://www.myownnews.ru.com/api',
+    'https://www.myownnews.ru.com/api',
+    'https://Vaitsehovskiy-Tony.github.io',
+  ],
+  methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
+  preflightContinue: false,
+  optionsSuccessStatus: 204,
+  allowerHeaders: ['Content-Type', 'Authorization'],
+  credentials: true,
+};
 
-// app.use('*', cors(corsOptions));
+app.use(cors(corsOptions));
 
 // configuring CORS
-app.use('*', function(req, res, next) {
-  const { origin } = req.headers;
-  if (ALLOWED_ORIGINS.includes(origin)) res.header('Access-Control-Allow-Origin', origin);
-  res.header('Access-Control-Allow-Methods', 'GET, POST, DELETE, OPTIONS');
-  res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
-  res.header('Access-Control-Allow-Credentials', 'true');
-  if (req.method === 'OPTIONS') res.status(204).send('OK');
-  else next();
-});
+// app.use('*', function(req, res, next) {
+//   const { origin } = req.headers;
+//   if (ALLOWED_ORIGINS.includes(origin)) res.header('Access-Control-Allow-Origin', origin);
+//   res.header('Access-Control-Allow-Methods', 'GET, POST, DELETE, OPTIONS');
+//   res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
+//   res.header('Access-Control-Allow-Credentials', 'true');
+//   if (req.method === 'OPTIONS') res.status(204).send('OK');
+//   else next();
+// });
 
 app.use(limiter);
 app.use(helmet());
