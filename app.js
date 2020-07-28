@@ -38,28 +38,32 @@ const limiter = rateLimit({
   max: 100,
 });
 
+// const corsOptions = {
+//   origin: [
+//     'http://localhost:8080',
+//     '84.201.169.56',
+//     'http://myownnews.ru.com/',
+//     'https://myownnews.ru.com/',
+//     'http://myownnews.ru.com/api',
+//     'https://myownnews.ru.com/api',
+//     'http://www.myownnews.ru.com/',
+//     'https://www.myownnews.ru.com/',
+//     'http://www.myownnews.ru.com/api',
+//     'https://www.myownnews.ru.com/api',
+//     'https://Vaitsehovskiy-Tony.github.io',
+//   ],
+//   methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
+//   preflightContinue: false,
+//   optionsSuccessStatus: 204,
+//   allowerHeaders: ['Content-Type', 'Authorization'],
+//   credentials: true,
+// };
+
 const corsOptions = {
-  origin: [
-    'http://localhost:8080',
-    '84.201.169.56',
-    'http://myownnews.ru.com/',
-    'https://myownnews.ru.com/',
-    'http://myownnews.ru.com/api',
-    'https://myownnews.ru.com/api',
-    'http://www.myownnews.ru.com/',
-    'https://www.myownnews.ru.com/',
-    'http://www.myownnews.ru.com/api',
-    'https://www.myownnews.ru.com/api',
-    'https://Vaitsehovskiy-Tony.github.io',
-  ],
-  methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
-  preflightContinue: false,
-  optionsSuccessStatus: 204,
-  allowerHeaders: ['Content-Type'],
-  credentials: true,
+  origin: '*',
 };
 
-app.use('*', cors(corsOptions));
+app.use(cors(corsOptions));
 
 app.use(limiter);
 app.use(helmet());
