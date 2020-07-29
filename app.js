@@ -26,6 +26,7 @@ const corsOptions = {
     'http://www.myownnews.ru.com/api',
     'https://www.myownnews.ru.com/api',
     'https://Vaitsehovskiy-Tony.github.io',
+    'https://vaitsehovskiy-tony.github.io/news-explorer-frontend/',
   ],
   // methods: ['GET', 'HEAD', 'PUT', 'PATCH', 'POST', 'DELETE'],
   // preflightContinue: false,
