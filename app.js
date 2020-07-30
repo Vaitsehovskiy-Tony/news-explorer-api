@@ -25,13 +25,12 @@ const corsOptions = {
     'https://www.myownnews.ru.com',
     'http://www.myownnews.ru.com/api',
     'https://www.myownnews.ru.com/api',
-    'https://Vaitsehovskiy-Tony.github.io',
-    'https://vaitsehovskiy-tony.github.io/news-explorer-frontend/',
+    'https://vaitsehovskiy-tony.github.io',
+    'https://vaitsehovskiy-tony.github.io//news-explorer-frontend',
   ],
   // methods: ['GET', 'HEAD', 'PUT', 'PATCH', 'POST', 'DELETE'],
   // preflightContinue: false,
   // optionsSuccessStatus: 204,
-  allowerHeaders: ['Access-Control-Allow-Origin', 'Content-Type', 'Authorization', 'x-requested-with', 'origin', 'accept'],
   credentials: true,
 };
 
