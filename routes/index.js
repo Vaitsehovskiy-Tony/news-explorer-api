@@ -17,6 +17,7 @@ const { requestLogger, errorLogger } = require('../middlewares/logger');
 // контроллеры
 const { signIn } = require('../controllers/signin');
 const { signUp } = require('../controllers/signup');
+const { logout } = require('../controllers/users');
 
 // миддлвар авторизации
 const auth = require('../middlewares/auth');
@@ -38,6 +39,8 @@ router.use(auth);
 // роуты users и cards
 router.use('/users', users);
 router.use('/articles', articles);
+
+router.delete('/logout', logout);
 
 // наша обработка ошибок
 router.use(errorsHandler);

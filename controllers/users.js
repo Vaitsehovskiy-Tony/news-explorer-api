@@ -15,7 +15,14 @@ const findUser = (req, res, next) => {
     .catch(next);
 };
 
+const logout = (req, res) => {
+  res
+    .cookie('jwt', '', { domain: '', httpOnly: true, maxAge: 0 })
+    .end();
+};
+
 module.exports = {
   findUser,
   getUser,
+  logout,
 };
