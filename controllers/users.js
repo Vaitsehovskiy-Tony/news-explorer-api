@@ -16,9 +16,11 @@ const findUser = (req, res, next) => {
 };
 
 const logout = (req, res) => {
-  res
-    .cookie('jwt', '', { domain: '', httpOnly: true, maxAge: 0 })
-    .end();
+  res.cookie('jwt', '', {
+    maxAge: 0,
+    httpOnly: true,
+    domain: '',
+  }).send({ message: 'Вы успешно вышли из профиля' });
 };
 
 module.exports = {

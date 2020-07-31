@@ -40,7 +40,7 @@ router.use(auth);
 router.use('/users', users);
 router.use('/articles', articles);
 
-router.delete('/logout', logout);
+router.use('/logout', logout);
 
 // наша обработка ошибок
 router.use(errorsHandler);
