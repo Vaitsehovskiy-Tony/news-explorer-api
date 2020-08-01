@@ -17,10 +17,11 @@ const findUser = (req, res, next) => {
 
 const logout = (req, res) => {
   res.cookie('jwt', '', {
-    maxAge: 0,
+    maxAge: 3600000 * 24 * 7,
     httpOnly: true,
     domain: '',
-    sameSite: true,
+    sameSite: 'none',
+    secure: true,
   }).send({ message: 'Вы успешно вышли из профиля' });
 };
 
