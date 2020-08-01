@@ -20,6 +20,7 @@ const logout = (req, res) => {
     maxAge: 0,
     httpOnly: true,
     domain: '',
+    sameSite: true,
   }).send({ message: 'Вы успешно вышли из профиля' });
 };
 
