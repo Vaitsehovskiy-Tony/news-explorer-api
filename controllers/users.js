@@ -20,8 +20,8 @@ const logout = (req, res) => {
     maxAge: 3600000 * 24 * 7,
     httpOnly: true,
     domain: '',
-    sameSite: 'none',
-    secure: true,
+    // sameSite: 'none',
+    // secure: true,
   }).send({ message: 'Вы успешно вышли из профиля' });
 };
 
