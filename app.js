@@ -16,46 +16,34 @@ const { requestLogger, errorLogger } = require('./middlewares/logger');
 
 const { PORT, DATABASE_URL } = require('./config');
 
-const whitelist = [
-  'http://localhost:8080',
-  '84.201.169.56',
-  'http://myownnews.ru.com',
-  'https://myownnews.ru.com',
-  'http://myownnews.ru.com/api',
-  'https://myownnews.ru.com/api',
-  'http://www.myownnews.ru.com',
-  'https://www.myownnews.ru.com',
-  'http://www.myownnews.ru.com/api',
-  'https://www.myownnews.ru.com/api',
-  'https://vaitsehovskiy-tony.github.io',
-  'https://vaitsehovskiy-tony.github.io//news-explorer-frontend',
-];
-
 const corsOptions = {
-  origin(origin, callback) {
-    if (whitelist.indexOf(origin) !== -1) {
-      callback(null, true);
-    } else {
-      callback(new Error('Not allowed by CORS'));
-    }
-  },
-  credentials: true, // для передачи заголовка Access-Control-Allow-credentials
+  origin: [
+    'http://localhost:8080',
+    '84.201.169.56',
+    'http://myownnews.ru.com',
+    'https://myownnews.ru.com',
+    'http://myownnews.ru.com/api',
+    'https://myownnews.ru.com/api',
+    'http://www.myownnews.ru.com',
+    'https://www.myownnews.ru.com',
+    'http://www.myownnews.ru.com/api',
+    'https://www.myownnews.ru.com/api',
+    'https://vaitsehovskiy-tony.github.io',
+    'https://vaitsehovskiy-tony.github.io//news-explorer-frontend',
+  ],
+  // methods: ['GET', 'HEAD', 'PUT', 'PATCH', 'POST', 'DELETE'],
+  // preflightContinue: false,
+  // optionsSuccessStatus: 204,
+  credentials: true,
 };
 
-// const corsOptions = {
-//   origin: 'https://iseeknews.space',
-//   credentials: true,
-// };
-
-// подключаемся к серверу mongo
+app.use(cors(corsOptions));
 mongoose.connect(DATABASE_URL, {
   useNewUrlParser: true,
   useCreateIndex: true,
   useFindAndModify: false,
 });
 
-
-app.use(cors(corsOptions));
 app.use(cookieParser());// подключаем парсер кук как мидлвэр
 // подключаем helmet
 app.use(helmet());
