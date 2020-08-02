@@ -1,54 +1,48 @@
 const mongoose = require('mongoose');
-const isURL = require('validator/lib/isURL');
+const validator = require('validator');
 
-const articleSchema = new mongoose.Schema({
+const articleModel = new mongoose.Schema({
   keyword: {
     type: String,
-    minlength: 2,
-    maxlength: 30,
-    required: true,
+    required: [true, 'Это обязательное поле'],
   },
   title: {
     type: String,
-    minlength: 2,
-    required: true,
+    required: [true, 'Это обязательное поле'],
   },
   text: {
     type: String,
-    minlength: 2,
-    required: true,
+    required: [true, 'Это обязательное поле'],
   },
   date: {
     type: String,
-    minlength: 2,
-    required: true,
+    required: [true, 'Это обязательное поле'],
   },
   source: {
     type: String,
-    required: true,
+    required: [true, 'Это обязательное поле'],
   },
   link: {
     type: String,
-    required: true,
+    required: [true, 'Это обязательное поле'],
     validate: {
-      validator: (v) => isURL(v),
-      message: 'Неправильный формат URL',
+      validator(v) { return validator.isURL(v); },
+      message: 'Здесь должна быть ссылка',
     },
   },
   image: {
     type: String,
-    required: true,
+    required: [true, 'Это обязательное поле'],
     validate: {
-      validator: (v) => isURL(v),
-      message: 'Неправильный формат URL',
+      validator(v) { return validator.isURL(v); },
+      message: 'Здесь должна быть ссылка',
     },
   },
   owner: {
     type: mongoose.Schema.Types.ObjectId,
+    required: [true, 'Это обязательное поле'],
     ref: 'user',
-    required: true,
-    select: false,
   },
 });
 
-module.exports = mongoose.model('article', articleSchema);
+module.exports = mongoose.model('article', articleModel);

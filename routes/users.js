@@ -1,7 +1,12 @@
-const router = require('express').Router();
+const routerUsers = require('express').Router();
+const { getUser, findUser } = require('../controllers/users');
+const { requestLogger, errorLogger } = require('../middlewares/logger');
 
-const { getUserById } = require('../controllers/users');
+routerUsers.use(requestLogger);
 
-router.get('/me', getUserById);
+routerUsers.get('/me', getUser);
+routerUsers.get('/:id', findUser);
 
-module.exports = router;
+routerUsers.use(errorLogger);
+
+module.exports = routerUsers;

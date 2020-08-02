@@ -1,24 +1,55 @@
+// создаем роутер
 const router = require('express').Router();
-const { celebrate } = require('celebrate');
 
+// импортируем celebrate и обработчик ошибок
+const { errors, celebrate } = require('celebrate');
+
+// схемы celebrate
+const { signInSchema } = require('../schemas/signInSchema');
+const { signUpSchema } = require('../schemas/signUpSchema');
+
+// миддлвары
+const errorsHandler = require('../middlewares/errorsHandler');
+
+// библиотека для логгирования winston
+const { requestLogger, errorLogger } = require('../middlewares/logger');
+
+// контроллеры
+const { signIn } = require('../controllers/signin');
+const { signUp } = require('../controllers/signup');
+const { logout } = require('../controllers/users');
+
+// миддлвар авторизации
 const auth = require('../middlewares/auth');
-const { signUpSchema } = require('../schemasJoi/signup');
-const { signInSchema } = require('../schemasJoi/signin');
 
-const { createUser, login, logout } = require('../controllers/users');
+// роутеры
+const users = require('./users');
+const articles = require('./articles');
 
-router.post('/signup', celebrate(signUpSchema), createUser);
-router.post('/signin', celebrate(signInSchema), login);
+// логгер запросов
+router.use(requestLogger);
 
-// авторизация
+// роуты регистрации  и логина
+router.post('/signup', celebrate(signUpSchema), signUp);
+router.post('/signin', celebrate(signInSchema), signIn);
+
+// роут авторизации
 router.use(auth);
-router.use('/users', require('./users'));
-router.use('/articles', require('./articles'));
 
-router.delete('/logout', logout);
+// роуты users и cards
+router.use('/users', users);
+router.use('/articles', articles);
 
-router.use((req, res) => {
-  res.status(404).send({ message: 'Запрашиваемый ресурс не найден' });
-});
+router.use('/logout', logout);
 
+// наша обработка ошибок
+router.use(errorsHandler);
+
+// логгер ошибок
+router.use(errorLogger);
+
+// обработчик ошибок celebrate
+router.use(errors());
+
+// экспортируем роутер
 module.exports = router;

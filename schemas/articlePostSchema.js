@@ -1,26 +1,22 @@
 const { Joi } = require('celebrate');
 
-module.exports.postArticleSchema = {
+module.exports.articlePostSchema = {
   body: Joi.object().keys({
     keyword: Joi.string()
-      .min(2)
-      .max(30)
       .required(),
     title: Joi.string()
-      .min(2)
       .required(),
     text: Joi.string()
-      .min(2)
       .required(),
     date: Joi.string()
-      .min(2)
       .required(),
     source: Joi.string()
-      .min(2)
       .required(),
     link: Joi.string()
+      .regex(/(https?:\/\/)(www\.)?((\w+\.\w{2,})|(\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}))(:\d{2,5})?.*#?/i)
       .required(),
     image: Joi.string()
+      .regex(/(https?:\/\/)(www\.)?((\w+\.\w{2,})|(\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}))(:\d{2,5})?.*#?/i)
       .required(),
   }),
 };

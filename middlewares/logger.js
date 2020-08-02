@@ -1,7 +1,8 @@
+// библиотека для логгирования
 const winston = require('winston');
+// переводим winson на express
 const expressWinston = require('express-winston');
 
-// логгер запросов
 const requestLogger = expressWinston.logger({
   transports: [
     new winston.transports.File({ filename: 'request.log' }),
@@ -9,7 +10,6 @@ const requestLogger = expressWinston.logger({
   format: winston.format.json(),
 });
 
-// логгер ошибок
 const errorLogger = expressWinston.errorLogger({
   transports: [
     new winston.transports.File({ filename: 'error.log' }),

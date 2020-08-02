@@ -1,30 +1,27 @@
+const validator = require('validator');
 const mongoose = require('mongoose');
-const isEmail = require('validator/lib/isEmail');
-const uniqueValidator = require('mongoose-unique-validator');
 
 const userSchema = new mongoose.Schema({
+  name: {
+    type: String,
+    required: [true, 'Это обязательное поле'],
+    minlength: [2, 'Должно быть от 2 до 30 символов'],
+    maxlength: [30, 'Должно быть от 2 до 30 символов'],
+  },
   email: {
     type: String,
-    unique: true,
-    validate: {
-      validator: (v) => isEmail(v),
-      message: 'Неправильный формат почты',
-    },
     required: true,
+    unique: false,
+    validate: {
+      validator(v) { return validator.isEmail(v); },
+      message: 'Неверный формат почты',
+    },
   },
   password: {
     type: String,
-    minlength: 8,
-    select: false, // Так по умлочанию хеш пароля пользователя не будет возвращаться из базы
     required: true,
-  },
-  name: {
-    type: String,
-    minlength: 2,
-    maxlength: 30,
-    required: true,
+    select: false,
   },
 });
 
-userSchema.plugin(uniqueValidator);
 module.exports = mongoose.model('user', userSchema);
