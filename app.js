@@ -29,7 +29,7 @@ const corsOptions = {
     'http://www.myownnews.ru.com/api',
     'https://www.myownnews.ru.com/api',
     'https://vaitsehovskiy-tony.github.io',
-    'https://vaitsehovskiy-tony.github.io//news-explorer-frontend',
+    'https://vaitsehovskiy-tony.github.io/news-explorer-frontend',
   ],
   // methods: ['GET', 'HEAD', 'PUT', 'PATCH', 'POST', 'DELETE'],
   // preflightContinue: false,
@@ -38,6 +38,7 @@ const corsOptions = {
 };
 
 app.use(cors(corsOptions));
+
 mongoose.connect(DATABASE_URL, {
   useNewUrlParser: true,
   useCreateIndex: true,
