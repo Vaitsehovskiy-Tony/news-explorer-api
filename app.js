@@ -18,11 +18,17 @@ const { PORT, DATABASE_URL } = require('./config');
 
 const whitelist = [
   'http://localhost:8080',
-  'https://alsu-dxdy.github.io',
-  'https://www.iseeknews.space',
-  'http://www.iseeknews.space',
-  'https://iseeknews.space',
-  'http://iseeknews.space',
+  '84.201.169.56',
+  'http://myownnews.ru.com',
+  'https://myownnews.ru.com',
+  'http://myownnews.ru.com/api',
+  'https://myownnews.ru.com/api',
+  'http://www.myownnews.ru.com',
+  'https://www.myownnews.ru.com',
+  'http://www.myownnews.ru.com/api',
+  'https://www.myownnews.ru.com/api',
+  'https://vaitsehovskiy-tony.github.io',
+  'https://vaitsehovskiy-tony.github.io//news-explorer-frontend',
 ];
 
 const corsOptions = {
