@@ -1,18 +1,14 @@
-const articles = require('express').Router();
-const { errors, celebrate } = require('celebrate');
-const { articlePostSchema } = require('../schemas/articlePostSchema');
-const { createArticle, getArticles, articleRemove } = require('../controllers/articles');
+const router = require('express').Router();
+const { celebrate } = require('celebrate');
 
-const { requestLogger, errorLogger } = require('../middlewares/logger');
+const {
+  getArticles, createArticle, getArticleById, removeArticleById,
+} = require('../controllers/articles');
+const { postArticleSchema } = require('../schemasJoi/postArticleSchema');
+const { articleIdSchema } = require('../schemasJoi/articleIdSchema');
 
-articles.use(requestLogger);
+router.get('/', getArticles);
+router.post('/', celebrate(postArticleSchema), createArticle);
+router.delete('/:articleId', celebrate(articleIdSchema), getArticleById, removeArticleById);
 
-articles.delete('/:id', articleRemove);
-articles.get('/', getArticles);
-articles.post('/', celebrate(articlePostSchema), createArticle);
-
-articles.use(errors());
-
-articles.use(errorLogger);
-
-module.exports = articles;
+module.exports = router;

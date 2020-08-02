@@ -1,59 +1,53 @@
-/* eslint-disable arrow-parens */
-/* eslint-disable no-unused-vars */
-const articleModel = require('../models/article');
-const ForbiddenError = require('../errors/forbidden-error');
-const NotFoundError = require('../errors/not-found-error');
-const BadRequestError = require('../errors/bad-request-error');
+// импортируем модель
+const Article = require('../models/article');
+const NotFoundError = require('../errors/NotFoundError');
+const ForbiddenError = require('../errors/ForbiddenError');
 
-const articleRemove = (req, res, next) => {
-  articleModel.findById(req.params.id)
+module.exports.getArticles = (req, res, next) => {
+  Article.find({ owner: req.user._id })
+    .populate('owner')
+    .orFail(new NotFoundError('Articles does not exist'))
+
+    .then((articles) => res.send({ articles }))
+    .catch(next);
+};
+
+module.exports.getArticleById = (req, res, next) => {
+  Article
+    .findById(req.params.articleId)
+    .select('+owner')
+    .orFail(() => {
+      throw new NotFoundError(`article with ID ${req.params.articleId} does not exist`);
+    })
     .then((article) => {
-      const { owner } = article;
-      if (owner === 'null') {
-        throw new BadRequestError('Недопустимые символы, используйте латиницу');
-      }
-      return owner;
-    })
-    .then((owner) => {
-      if (req.user._id !== owner.toString()) {
-        throw new ForbiddenError('Недостаточно прав для удаления статьи');
-      }
-      return articleModel.findByIdAndRemove(req.params.id)
-        .then((article) => {
-          if (article) {
-            res.send({ data: article });
-          } else {
-            throw new NotFoundError('Нет статьи с таким id');
-          }
-        })
-        .catch(next);
-    })
-    .catch(err => {
-      throw new ForbiddenError('Недостаточно прав для удаления статьи');
+      req.article = article;
+      next();
     })
     .catch(next);
 };
 
-const getArticles = (req, res, next) => {
-  articleModel.find({})
-    .then((articles) => res.send({ data: articles }))
-    .catch(next);
-};
 
-const createArticle = (req, res, next) => {
+module.exports.createArticle = (req, res, next) => {
   const {
     keyword, title, text, date, source, link, image,
   } = req.body;
   const owner = req.user._id;
-  articleModel.create({
+
+  Article.create({
     keyword, title, text, date, source, link, image, owner,
   })
-    .then((article) => res.status(201).send({ data: article }))
+    .then((article) => res.send({ article }))
     .catch(next);
 };
 
-module.exports = {
-  createArticle,
-  getArticles,
-  articleRemove,
+module.exports.removeArticleById = (req, res, next) => {
+  // если владельцы не совпали
+  if (req.user._id !== req.article.owner.toString()) {
+    throw new ForbiddenError('Access rights error');
+  }
+  Article.remove({ _id: req.params.articleId })
+    .then(() => {
+      res.send({ data: `Article with ID ${req.params.articleId} is deleted` });
+    })
+    .catch(next);
 };
