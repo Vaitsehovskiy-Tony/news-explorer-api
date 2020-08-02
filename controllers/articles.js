@@ -35,7 +35,8 @@ const articleRemove = (req, res, next) => {
 };
 
 const getArticles = (req, res, next) => {
-  articleModel.find({})
+  articleModel.find({ owner: req.user._id })
+    .populate('owner')
     .then((articles) => res.send({ data: articles }))
     .catch(next);
 };
