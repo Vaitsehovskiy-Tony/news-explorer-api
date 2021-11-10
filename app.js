@@ -41,14 +41,6 @@ const app = express();
 // };
 
 // Add Access Control Allow Origin headers
-app.use((req, res, next) => {
-  res.header('Access-Control-Allow-Origin', '*');
-  res.header(
-    'Access-Control-Allow-Headers',
-    'Origin, X-Requested-With, Content-Type, Accept',
-  );
-  next();
-});
 
 // app.use(cors({
 //   origin: 'https://newsexplorer.nomoredomains.club',
@@ -136,6 +128,15 @@ mongoose.connect(config.MONGODB_URL, {
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use(router);
+
+app.use(function (req, res, next) {
+  res.header('Access-Control-Allow-Origin', '*');
+  res.header(
+    'Access-Control-Allow-Headers',
+    'Origin, X-Requested-With, Content-Type, Accept',
+  );
+  next();
+});
 
 // используем наш обработчик ошибок
 app.use(errorsHandler);
