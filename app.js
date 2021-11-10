@@ -41,7 +41,8 @@ const app = express();
 // };
 
 app.use(cors({
-  origin: 'https://newsexplorer.nomoredomains.club',
+  // origin: 'https://newsexplorer.nomoredomains.club',
+  origin: '*',
 }));
 // парсер данных
 const bodyParser = require('body-parser');
