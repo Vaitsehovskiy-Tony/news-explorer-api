@@ -8,7 +8,7 @@ require('dotenv').config();
 // подключаем express
 const express = require('express');
 
-const cors = require('cors');
+// const cors = require('cors');
 
 // const corsOptions = {
 //   origin: 'https://newsexplorer.nomoredomains.club/',
@@ -40,13 +40,23 @@ const app = express();
 //   credentials: true,
 // };
 
-app.use(cors({
-  // origin: 'https://newsexplorer.nomoredomains.club',
-  origin: '*',
-  methods: ['GET', 'HEAD', 'PUT', 'PATCH', 'POST', 'DELETE'],
-  credentials: true,
+// Add Access Control Allow Origin headers
+app.use((req, res, next) => {
+  res.setHeader('Access-Control-Allow-Origin', 'https://newsexplorer.nomoredomains.club');
+  res.header(
+    'Access-Control-Allow-Headers',
+    'Origin, X-Requested-With, Content-Type, Accept',
+  );
+  next();
+});
 
-}));
+// app.use(cors({
+//   origin: 'https://newsexplorer.nomoredomains.club',
+//   origin: '*',
+//   methods: ['GET', 'HEAD', 'PUT', 'PATCH', 'POST', 'DELETE'],
+//   credentials: true,
+
+// }));
 
 // app.get('/public', function(req, res) {
 //   res.set('Access-Control-Allow-Origin', '*')

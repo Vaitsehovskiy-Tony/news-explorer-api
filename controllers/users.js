@@ -4,7 +4,7 @@ const Users = require('../models/user');
 const getUser = (req, res, next) => {
   Users.findById(req.user._id)
     .then((user) => {
-      res.set('Access-Control-Allow-Origin', '*');
+      // res.set('Access-Control-Allow-Origin', '*');
       res.send({ data: user });
     })
     .catch(next);
