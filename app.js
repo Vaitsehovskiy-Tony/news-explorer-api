@@ -10,11 +10,11 @@ const express = require('express');
 
 const cors = require('cors');
 
-const corsOptions = {
-  // origin: 'https://newsexplorer.nomoredomains.club/',
-  origin: '*',
-  optionsSuccessStatus: 200,
-};
+// const corsOptions = {
+//   origin: 'https://newsexplorer.nomoredomains.club/',
+//   origin: '*',
+//   optionsSuccessStatus: 200,
+// };
 
 // создаем express-приложение
 const app = express();
@@ -40,7 +40,9 @@ const app = express();
 //   credentials: true,
 // };
 
-app.use(cors(corsOptions));
+app.use(cors({
+  origin: 'https://newsexplorer.nomoredomains.club/',
+}));
 // парсер данных
 const bodyParser = require('body-parser');
 
