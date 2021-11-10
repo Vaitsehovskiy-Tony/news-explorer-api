@@ -44,6 +44,7 @@ app.use(cors({
   // origin: 'https://newsexplorer.nomoredomains.club',
   origin: '*',
   methods: ['GET', 'HEAD', 'PUT', 'PATCH', 'POST', 'DELETE'],
+  credentials: true,
 
 }));
 // парсер данных
