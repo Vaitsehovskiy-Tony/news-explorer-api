@@ -47,6 +47,11 @@ app.use(cors({
   credentials: true,
 
 }));
+
+// app.get('/public', function(req, res) {
+//   res.set('Access-Control-Allow-Origin', '*')
+//   res.send(...)
+// })
 // парсер данных
 const bodyParser = require('body-parser');
 
