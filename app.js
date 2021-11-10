@@ -10,29 +10,34 @@ const express = require('express');
 
 const cors = require('cors');
 
+const corsOptions = {
+  origin: 'https://newsexplorer.nomoredomains.club/',
+  optionsSuccessStatus: 200,
+};
+
 // создаем express-приложение
 const app = express();
 
-const corsOptions = {
-  origin: [
-    'http://localhost:8080/',
-    '178.154.207.181',
-    'http://newsexplorer.nomoredomains.club/',
-    'https://newsexplorer.nomoredomains.club/',
-    // 'http://myownnews.ru.com/api',
-    // 'https://myownnews.ru.com/api',
-    'http://www.newsexplorer.nomoredomains.club/',
-    'https://www.newsexplorer.nomoredomains.club/',
-    // 'http://www.myownnews.ru.com/api',
-    // 'https://www.myownnews.ru.com/api',
-    'https://vaitsehovskiy-tony.github.io/',
-    'https://vaitsehovskiy-tony.github.io//news-explorer-frontend/',
-  ],
-  // methods: ['GET', 'HEAD', 'PUT', 'PATCH', 'POST', 'DELETE'],
-  // preflightContinue: false,
-  // optionsSuccessStatus: 204,
-  credentials: true,
-};
+// const corsOptions = {
+//   origin: [
+//     'http://localhost:8080/',
+//     '178.154.207.181',
+//     'http://newsexplorer.nomoredomains.club/',
+//     'https://newsexplorer.nomoredomains.club/',
+//     // 'http://myownnews.ru.com/api',
+//     // 'https://myownnews.ru.com/api',
+//     'http://www.newsexplorer.nomoredomains.club/',
+//     'https://www.newsexplorer.nomoredomains.club/',
+//     // 'http://www.myownnews.ru.com/api',
+//     // 'https://www.myownnews.ru.com/api',
+//     'https://vaitsehovskiy-tony.github.io/',
+//     'https://vaitsehovskiy-tony.github.io//news-explorer-frontend/',
+//   ],
+//   // methods: ['GET', 'HEAD', 'PUT', 'PATCH', 'POST', 'DELETE'],
+//   // preflightContinue: false,
+//   // optionsSuccessStatus: 204,
+//   credentials: true,
+// };
 
 app.use(cors(corsOptions));
 // парсер данных
