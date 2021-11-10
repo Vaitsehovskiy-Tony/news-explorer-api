@@ -43,6 +43,8 @@ const app = express();
 app.use(cors({
   // origin: 'https://newsexplorer.nomoredomains.club',
   origin: '*',
+  methods: ['GET', 'HEAD', 'PUT', 'PATCH', 'POST', 'DELETE'],
+
 }));
 // парсер данных
 const bodyParser = require('body-parser');
