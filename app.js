@@ -11,7 +11,8 @@ const express = require('express');
 const cors = require('cors');
 
 const corsOptions = {
-  origin: 'https://newsexplorer.nomoredomains.club/',
+  // origin: 'https://newsexplorer.nomoredomains.club/',
+  origin: '*',
   optionsSuccessStatus: 200,
 };
 
