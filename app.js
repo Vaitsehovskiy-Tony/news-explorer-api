@@ -21,13 +21,14 @@ const app = express();
 
 app.use(function (req, res, next) {
   res.header('Access-Control-Allow-Origin', '*');
-  res.header('Vary', 'Origin');
   res.header(
     'Access-Control-Allow-Headers',
     'Origin, X-Requested-With, Content-Type, Accept',
   );
   next();
 });
+
+console.log('Приложение обновляется');
 
 // const corsOptions = {
 //   origin: [
