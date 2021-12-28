@@ -138,14 +138,6 @@ mongoose.connect(config.MONGODB_URL, {
   useUnifiedTopology: true,
 });
 
-// отслеживание ошибок в консоли
-// .then(() => {
-//   console.log('Connected to MongoDB');
-// })
-// .catch(() => {
-//   console.log('Connection error');
-// });
-
 // делаем доступными пользователю все публичные файлы
 app.use(express.static(path.join(__dirname, 'public')));
 
