@@ -52,18 +52,19 @@ const app = express();
 const corsOptions = {
   credentials: true,
   methods: ['GET', 'HEAD', 'PUT', 'PATCH', 'POST', 'DELETE'],
-  origin: [
-    'http://localhost:8080/',
-    'http://newsexplorer.nomoredomains.club/',
-    'https://newsexplorer.nomoredomains.club/',
-    'http://www.newsexplorer.nomoredomains.club/',
-    'https://www.newsexplorer.nomoredomains.club/',
-    'http://newsexplorer.nomoredomains.club/',
-    'https://newsexplorer.nomoredomains.club/',
-    'https://vaitsehovskiy-tony.github.io/',
-    'https://vaitsehovskiy-tony.github.io//news-explorer-frontend/',
-  ],
+  // origin: [
+  //   'http://localhost:8080/',
+  //   'http://newsexplorer.nomoredomains.club/',
+  //   'https://newsexplorer.nomoredomains.club/',
+  //   'http://www.newsexplorer.nomoredomains.club/',
+  //   'https://www.newsexplorer.nomoredomains.club/',
+  //   'http://newsexplorer.nomoredomains.club/',
+  //   'https://newsexplorer.nomoredomains.club/',
+  //   'https://vaitsehovskiy-tony.github.io/',
+  //   'https://vaitsehovskiy-tony.github.io//news-explorer-frontend/',
+  // ],
   // origin: 'http://localhost:8080',
+  origin: 'https://newsexplorer.nomoredomains.club/',
 };
 
 app.use(cors(corsOptions));
