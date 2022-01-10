@@ -7,47 +7,10 @@ require('dotenv').config();
 
 // подключаем express
 const express = require('express');
-
 const cors = require('cors');
-
-// const corsOptions = {
-//   origin: 'https://newsexplorer.nomoredomains.club/',
-//   origin: '*',
-//   optionsSuccessStatus: 200,
-// };
 
 // создаем express-приложение
 const app = express();
-
-// app.use(function (req, res, next) {
-//   res.header('Access-Control-Allow-Origin', '*');
-//   res.header(
-//     'Access-Control-Allow-Headers',
-//     'Origin, X-Requested-With, Content-Type, Accept',
-//   );
-//   next();
-// });
-
-// const corsOptions = {
-//   origin: [
-//     'http://localhost:8080/',
-//     '178.154.207.181',
-//     'http://newsexplorer.nomoredomains.club/',
-//     'https://newsexplorer.nomoredomains.club/',
-//     'http://localhost:3000/',
-//     // 'https://myownnews.ru.com/api',
-//     'http://www.newsexplorer.nomoredomains.club/',
-//     'https://www.newsexplorer.nomoredomains.club/',
-//     // 'http://www.myownnews.ru.com/api',
-//     // 'https://www.myownnews.ru.com/api',
-//     'https://vaitsehovskiy-tony.github.io/',
-//     'https://vaitsehovskiy-tony.github.io//news-explorer-frontend/',
-//   ],
-//   methods: ['GET', 'HEAD', 'PUT', 'PATCH', 'POST', 'DELETE'],
-//   preflightContinue: false,
-//   optionsSuccessStatus: 204,
-//   credentials: true,
-// };
 
 const corsOptions = {
   credentials: true,
@@ -59,9 +22,7 @@ const corsOptions = {
   //   'http://www.newsexplorer.nomoredomains.club/',
   //   'https://www.newsexplorer.nomoredomains.club/',
   //   'http://newsexplorer.nomoredomains.club/',
-  //   'https://newsexplorer.nomoredomains.club/',
-  //   'https://vaitsehovskiy-tony.github.io/',
-  //   'https://vaitsehovskiy-tony.github.io//news-explorer-frontend/',
+  //   'https://vaitsehovskiy-tony.github.io/news-explorer-frontend/',
   // ],
   // origin: 'http://localhost:8080',
   origin: 'https://newsexplorer.nomoredomains.club/',
@@ -71,12 +32,6 @@ app.use(cors(corsOptions));
 
 // Add Access Control Allow Origin headers
 
-// app.use(cors({corsOptions}));
-
-// app.get('/public', function(req, res) {
-//   res.set('Access-Control-Allow-Origin', '*')
-//   res.send(...)
-// })
 // парсер данных
 const bodyParser = require('body-parser');
 
@@ -106,22 +61,11 @@ const limiter = rateLimit({
   max: 100,
 });
 
-// configuring CORS
-// app.use('*', function(req, res, next) {
-//   const { origin } = req.headers;
-//   if (ALLOWED_ORIGINS.includes(origin)) res.header('Access-Control-Allow-Origin', origin);
-//   res.header('Access-Control-Allow-Methods', 'GET, POST, DELETE, OPTIONS');
-//   res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
-//   res.header('Access-Control-Allow-Credentials', 'true');
-//   if (req.method === 'OPTIONS') res.status(204).send('OK');
-//   else next();
-// });
-
 app.use(limiter);
 app.use(helmet());
 app.use(cookieParser());
 
-// для собирания JSON-формата
+// для сборки JSON-формата
 app.use(bodyParser.json());
 // для приёма веб-страниц внутри POST-запроса
 app.use(bodyParser.urlencoded({ extended: true }));
